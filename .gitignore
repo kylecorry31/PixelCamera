@@ -1,0 +1,17 @@
+_archive/
+_devdocs/
+_docs/*.jpg
+_other/
+
+.gradle/
+.idea/
+build/
+gfx/
+testdata/
+
+*.db
+*.iml
+*.apk
+*.ap_
+
+local.properties
