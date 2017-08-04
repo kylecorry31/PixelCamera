@@ -6,7 +6,7 @@ android {
     compileOptions.encoding = 'UTF-8'
 
     defaultConfig {
-        applicationId "net.sourceforge.opencamera"
+        applicationId "com.kylecorry.pixelcamera"
         minSdkVersion 15
         targetSdkVersion 24 // can't target 25 or later due to https://issuetracker.google.com/issues/37140083 , waiting for Android Studio 2.4 for this to be fully fixed
 
