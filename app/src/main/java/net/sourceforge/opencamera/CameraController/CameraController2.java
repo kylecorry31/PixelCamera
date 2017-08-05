@@ -52,7 +52,7 @@ import android.view.SurfaceHolder;
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class CameraController2 extends CameraController {
 	private static final String TAG = "CameraController2";
-	private static final long PIXEL_MAX_EXPOSURE = Math.round(1000000000L * 1.95);
+	public static final long PIXEL_MAX_EXPOSURE = Math.round(1000000000L * 1.95);
 
 	private final Context context;
 	private CameraDevice camera;
@@ -1326,7 +1326,7 @@ public class CameraController2 extends CameraController {
 				camera_features.supports_expo_bracketing = true;
 				camera_features.max_expo_bracketing_n_images = max_expo_bracketing_n_images;
 				camera_features.min_exposure_time = exposure_time_range.getLower();
-				boolean is_pixel = Build.MANUFACTURER.equalsIgnoreCase("google") && Build.MANUFACTURER.equalsIgnoreCase("sailfish");
+				boolean is_pixel = Build.MANUFACTURER.equalsIgnoreCase("google") && Build.DEVICE.equalsIgnoreCase("sailfish");
 				if(is_pixel) {
 					camera_features.max_exposure_time = PIXEL_MAX_EXPOSURE;
 				} else {
