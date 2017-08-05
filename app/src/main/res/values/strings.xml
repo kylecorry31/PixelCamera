@@ -307,8 +307,9 @@
     <string name="dont_show_again">Don\'t show again</string>
 
     <string name="photo_mode">Photo Mode</string>
-    <string name="photo_mode_standard">Standard</string>
+    <string name="photo_mode_standard">Normal</string>
     <string name="photo_mode_hdr">HDR</string>
+    <string name="photo_mode_astro">Astro</string>
     <string name="photo_mode_expo_bracketing">Expo {}</string>
     <string name="photo_mode_expo_bracketing_full">Exposure Bracketing</string>
     <string name="preference_category_stamp">Photo Stamp</string>

@@ -1,5 +1,6 @@
 package net.sourceforge.opencamera.UI;
 
+import net.sourceforge.opencamera.CameraController.CameraController2;
 import net.sourceforge.opencamera.MainActivity;
 import net.sourceforge.opencamera.MyApplicationInterface;
 import net.sourceforge.opencamera.MyDebug;
@@ -235,6 +236,8 @@ public class PopupView extends LinearLayout {
 			final List<MyApplicationInterface.PhotoMode> photo_mode_values = new ArrayList<>();
 			photo_modes.add( getResources().getString(R.string.photo_mode_standard) );
 			photo_mode_values.add( MyApplicationInterface.PhotoMode.Standard );
+			photo_modes.add(getResources().getString(R.string.photo_mode_astro));
+			photo_mode_values.add(MyApplicationInterface.PhotoMode.Astro);
 			if( main_activity.supportsDRO() ) {
 				photo_modes.add( getResources().getString(R.string.photo_mode_dro) );
 				photo_mode_values.add( MyApplicationInterface.PhotoMode.DRO );
@@ -248,7 +251,7 @@ public class PopupView extends LinearLayout {
     			photo_mode_values.add( MyApplicationInterface.PhotoMode.ExpoBracketing );
     		}
     		if( photo_modes.size() > 1 ) {
-    			MyApplicationInterface.PhotoMode photo_mode = main_activity.getApplicationInterface().getPhotoMode();
+    			final MyApplicationInterface.PhotoMode photo_mode = main_activity.getApplicationInterface().getPhotoMode();
     			String current_mode = null;
     			for(int i=0;i<photo_modes.size() && current_mode==null;i++) {
     				if( photo_mode_values.get(i) == photo_mode ) {
@@ -293,6 +296,18 @@ public class PopupView extends LinearLayout {
     						if( new_photo_mode == MyApplicationInterface.PhotoMode.Standard ) {
         						editor.putString(PreferenceKeys.getPhotoModePreferenceKey(), "preference_photo_mode_std");
     						}
+    						if(new_photo_mode == MyApplicationInterface.PhotoMode.Standard && photo_mode == MyApplicationInterface.PhotoMode.Astro){
+								editor.putString(PreferenceKeys.getISOPreferenceKey(), "auto");
+								editor.putString(PreferenceKeys.getBurstModePreferenceKey(), sharedPreferences.getString(PreferenceKeys.getPreviousBurstModePreferenceKey(), "1"));
+							}
+    						if (new_photo_mode == MyApplicationInterface.PhotoMode.Astro){
+								editor.putString(PreferenceKeys.getPhotoModePreferenceKey(), "preference_photo_mode_astro");
+								editor.putLong(PreferenceKeys.getExposureTimePreferenceKey(), CameraController2.PIXEL_MAX_EXPOSURE);
+								editor.putString(PreferenceKeys.getISOPreferenceKey(), "3200");
+								editor.putString(PreferenceKeys.getPreviousBurstModePreferenceKey(), sharedPreferences.getString(PreferenceKeys.getBurstModePreferenceKey(), "1"));
+								editor.putString(PreferenceKeys.getBurstModePreferenceKey(), "unlimited");
+
+							}
 							else if( new_photo_mode == MyApplicationInterface.PhotoMode.DRO ) {
 								editor.putString(PreferenceKeys.getPhotoModePreferenceKey(), "preference_photo_mode_dro");
 							}

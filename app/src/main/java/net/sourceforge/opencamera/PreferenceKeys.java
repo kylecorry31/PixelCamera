@@ -418,4 +418,6 @@ public class PreferenceKeys {
     public static String getImmersiveModePreferenceKey() {
     	return "preference_immersive_mode";
     }
+
+    public static String getPreviousBurstModePreferenceKey(){return "preference_burst_mode_prev";}
 }

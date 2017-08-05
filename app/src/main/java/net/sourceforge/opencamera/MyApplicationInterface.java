@@ -56,6 +56,7 @@ public class MyApplicationInterface implements ApplicationInterface {
 	// note, okay to change the order of enums in future versions, as getPhotoMode() does not rely on the order for the saved photo mode
     public enum PhotoMode {
     	Standard,
+		Astro,
 		DRO, // single image "fake" HDR
     	HDR, // HDR created from multiple (expo bracketing) images
     	ExpoBracketing // take multiple expo bracketed images, without combining to a single image
@@ -880,6 +881,10 @@ public class MyApplicationInterface implements ApplicationInterface {
 		boolean expo_bracketing = photo_mode_pref.equals("preference_photo_mode_expo_bracketing");
 		if( expo_bracketing && main_activity.supportsExpoBracketing() )
 			return PhotoMode.ExpoBracketing;
+        boolean astro = photo_mode_pref.equals("preference_photo_mode_astro");
+        if(astro){ // TODO: is this correct?
+            return PhotoMode.Astro;
+        }
 		return PhotoMode.Standard;
     }
 
