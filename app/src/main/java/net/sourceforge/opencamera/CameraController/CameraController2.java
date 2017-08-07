@@ -52,6 +52,7 @@ import android.view.SurfaceHolder;
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class CameraController2 extends CameraController {
 	private static final String TAG = "CameraController2";
+    public static long MAX_EXPOSURE = Math.round(1000000000L * 1.95);
 	public static final long PIXEL_MAX_EXPOSURE = Math.round(1000000000L * 1.95);
 
 	private final Context context;
@@ -1332,6 +1333,7 @@ public class CameraController2 extends CameraController {
 				} else {
 					camera_features.max_exposure_time = exposure_time_range.getUpper();
 				}
+				MAX_EXPOSURE = camera_features.max_exposure_time;
 			}
 		}
 

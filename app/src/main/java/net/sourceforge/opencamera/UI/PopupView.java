@@ -1,5 +1,6 @@
 package net.sourceforge.opencamera.UI;
 
+import net.sourceforge.opencamera.AstroMode;
 import net.sourceforge.opencamera.CameraController.CameraController2;
 import net.sourceforge.opencamera.MainActivity;
 import net.sourceforge.opencamera.MyApplicationInterface;
@@ -297,16 +298,10 @@ public class PopupView extends LinearLayout {
         						editor.putString(PreferenceKeys.getPhotoModePreferenceKey(), "preference_photo_mode_std");
     						}
     						if(new_photo_mode == MyApplicationInterface.PhotoMode.Standard && photo_mode == MyApplicationInterface.PhotoMode.Astro){
-								editor.putString(PreferenceKeys.getISOPreferenceKey(), "auto");
-								editor.putString(PreferenceKeys.getBurstModePreferenceKey(), sharedPreferences.getString(PreferenceKeys.getPreviousBurstModePreferenceKey(), "1"));
+								new AstroMode(sharedPreferences).disable();
 							}
     						if (new_photo_mode == MyApplicationInterface.PhotoMode.Astro){
-								editor.putString(PreferenceKeys.getPhotoModePreferenceKey(), "preference_photo_mode_astro");
-								editor.putLong(PreferenceKeys.getExposureTimePreferenceKey(), CameraController2.PIXEL_MAX_EXPOSURE);
-								editor.putString(PreferenceKeys.getISOPreferenceKey(), "3200");
-								editor.putString(PreferenceKeys.getPreviousBurstModePreferenceKey(), sharedPreferences.getString(PreferenceKeys.getBurstModePreferenceKey(), "1"));
-								editor.putString(PreferenceKeys.getBurstModePreferenceKey(), "unlimited");
-
+								new AstroMode(sharedPreferences).enable();
 							}
 							else if( new_photo_mode == MyApplicationInterface.PhotoMode.DRO ) {
 								editor.putString(PreferenceKeys.getPhotoModePreferenceKey(), "preference_photo_mode_dro");
